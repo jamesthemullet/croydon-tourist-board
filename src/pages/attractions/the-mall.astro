@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="The Whitgift Centre — Croydon Tourist Board" description="A shopping centre in the classical sense: it once contained shops.">
+  <main class="container">
+    <a class="back" href="/">&larr; Back to attractions</a>
+    <h1>The Whitgift Centre</h1>
+    <p class="lede">
+      Once one of the largest shopping centres in London. Now a fascinating study in slow
+      urban decay, half-heartedly redevelopment plans, and the occasional still-open shop
+      holding the fort.
+    </p>
+    <p>
+      Bring comfortable shoes and a sense of melancholy. Redevelopment has been "imminent"
+      since roughly 2013.
+    </p>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .back {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--red);
+    margin: 1rem 0;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+</style>

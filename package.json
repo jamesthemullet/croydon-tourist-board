@@ -1,0 +1,31 @@
+{
+  "name": "croydon-tourist-board",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "ts-check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^11.0.0",
+    "@vercel/analytics": "^2.0.1",
+    "astro": "^7.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@biomejs/biome": "^2.0.0",
+    "@vitest/ui": "^4.1.4",
+    "typescript": "^7.0.0",
+    "vitest": "^4.1.4"
+  },
+  "resolutions": {
+    "path-to-regexp": "^8.0.0"
+  }
+}

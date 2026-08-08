@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="The Chicken Mile — Croydon Tourist Board" description="The greatest concentration of fried chicken shops on planet Earth.">
+  <main class="container">
+    <a class="back" href="/">&larr; Back to attractions</a>
+    <h1>The Chicken Mile</h1>
+    <p class="lede">
+      A single stretch of Croydon High Street, from BoxPark down towards the centre, home to
+      the greatest concentration of fried chicken shops on planet Earth. This is not an
+      exaggeration. It is, in fact, the entire point.
+    </p>
+    <p>
+      Visitors should come hungry, come curious, and ideally come with a friend who is also
+      willing to eat their body weight in wings. A full guide to every shop on the Mile,
+      including a definitive map and a wheel of fortune for the indecisive, can be found on
+      the official Chicken Mile site.
+    </p>
+    <a class="cta" href="https://croydon-chicken-mile.vercel.app" target="_blank" rel="noopener">
+      Visit the Croydon Chicken Mile site &rarr;
+    </a>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .back {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--red);
+    margin: 1rem 0;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--brown);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--yellow);
+    color: var(--dark);
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+  }
+</style>

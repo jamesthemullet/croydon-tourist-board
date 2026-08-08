@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const attractions = [
+	{
+		name: 'The Chicken Mile',
+		blurb: "The greatest concentration of fried chicken shops on planet Earth, condensed into a single stretch of High Street. A pilgrimage route for the discerning glutton.",
+		href: 'https://croydon-chicken-mile.vercel.app',
+		external: true,
+		tag: 'Culinary',
+	},
+	{
+		name: 'The Whitgift Centre',
+		blurb: "A shopping centre in the classical sense: it once contained shops. Now a monument to what Croydon used to buy. Bring a torch.",
+		href: '/attractions/the-mall',
+		tag: 'Architecture',
+	},
+	{
+		name: "The World's Largest Tombstone",
+		blurb: "Officially the Nestlé Tower / Norfolk House. Unofficially, the single most tombstone-shaped office block ever erected on a British high street. Make of that what you will.",
+		href: '/attractions/tombstone',
+		tag: 'Architecture',
+	},
+	{
+		name: 'Fairfield Halls',
+		blurb: "A genuinely lovely concert and arts venue, tastefully restored, and proof that not everything here is a cry for help.",
+		href: '/attractions/fairfield-halls',
+		tag: 'Culture',
+	},
+	{
+		name: 'BoxPark Croydon',
+		blurb: "Shipping containers full of food, drink, and the unmistakable feeling that you are at a festival that never ends.",
+		href: '/attractions/boxpark',
+		tag: 'Culinary',
+	},
+];
+---
+<Layout>
+  <nav>
+    <div class="container nav-inner">
+      <span class="brand">Croydon Tourist Board</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Welcome to Croydon.</h1>
+        <p class="subtitle">
+          Home of the world's largest tombstone, a decaying shopping mall, and the greatest
+          concentration of fried chicken on Earth. Also: some genuinely good things. Come and see.
+        </p>
+      </div>
+    </section>
+
+    <section class="attractions">
+      <div class="container">
+        <h2>Official Attractions</h2>
+        <div class="grid">
+          {attractions.map((a) => (
+            <a
+              class="card"
+              href={a.href}
+              target={a.external ? '_blank' : undefined}
+              rel={a.external ? 'noopener' : undefined}
+            >
+              <span class="tag">{a.tag}</span>
+              <h3>{a.name}</h3>
+              <p>{a.blurb}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-title">Croydon Tourist Board</p>
+      <p>Proudly promoting Croydon since whenever we finished writing this website.</p>
+      <p class="small-muted">
+        Not an actual local authority body. Any resemblance to an official tourism organisation is entirely the point.
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  nav {
+    background: var(--dark);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand {
+    color: var(--cream);
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .hero {
+    padding: 4rem 0 2.5rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--red);
+  }
+
+  .subtitle {
+    max-width: 640px;
+    margin: 1rem auto 0;
+    font-size: 1.1rem;
+    color: var(--brown);
+  }
+
+  .attractions {
+    padding: 2rem 0 4rem;
+  }
+
+  .attractions h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    display: block;
+    background: var(--white);
+    border: 2px solid var(--dark);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+    color: var(--brown);
+  }
+
+  footer p {
+    margin: 0.25rem 0;
+  }
+
+  .footer-title {
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    color: var(--yellow);
+  }
+
+  .small-muted {
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+</style>
