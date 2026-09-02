@@ -7,10 +7,11 @@ audit adds new findings to the bottom of each section and leaves checked items a
 ## Run log
 
 - 2026-09-02 — initial audit: 16 findings (2 test coverage, 6 a11y, 1 perf, 2 SEO, 1 UX, 3 security, 1 content, 4 code quality — some categories overlap in cause, e.g. duplicated CSS underlies several)
+- 2026-09-02 — resolved: "Zero unit test files anywhere in `src/`" (test coverage #1) — added `test/attractions.test.ts`, a Vitest test verifying the homepage's `attractions` array data and cross-checking internal hrefs against files in `src/pages/attractions/`.
 
 ## 1. Test coverage — unit gaps and e2e
 
-- [ ] Zero unit test files anywhere in `src/` — `yarn test` fails immediately with "No test files found, exiting with code 1". Vitest is configured (`vitest.config.ts`) but nothing exercises it. (found: 2026-09-02)
+- [x] Zero unit test files anywhere in `src/` — `yarn test` fails immediately with "No test files found, exiting with code 1". Vitest is configured (`vitest.config.ts`) but nothing exercises it. (found: 2026-09-02) (resolved: 2026-09-02, PR #3)
 - [ ] No e2e framework present (no Playwright/Cypress in `package.json`). Manually walked the golden path via browser: home page renders all 5 attraction cards, all 5 internal attraction routes (`/attractions/boxpark`, `/attractions/chicken-mile`, `/attractions/fairfield-halls`, `/attractions/the-mall`, `/attractions/tombstone`) resolve without console errors, the external Chicken Mile link redirects correctly to `https://croydonchickenmile.co.uk`, and `yarn build` generates `dist/sitemap-index.xml` + `dist/sitemap-0.xml` listing all 6 live routes — none of this has automated coverage. Given this is a 6-page static site with essentially no client-side JS, a full Playwright suite is disproportionate; a lightweight CI smoke test (`astro build` + assert expected files exist in `dist/`, or a Vitest test asserting the `attractions` array in `index.astro` matches the files under `src/pages/attractions/`) would be a proportionate nice-to-have rather than a blocker. (found: 2026-09-02)
 
 ## 2. Accessibility
