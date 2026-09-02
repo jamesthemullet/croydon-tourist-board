@@ -1,0 +1,79 @@
+---
+interface Props {
+	title: string;
+	text: string;
+}
+const { title, text } = Astro.props;
+const shareUrl = new URL(
+	Astro.url.pathname,
+	"https://croydontouristboard.co.uk",
+).toString();
+---
+<div class="share">
+	<button
+		type="button"
+		class="share-btn"
+		data-title={title}
+		data-text={text}
+		data-url={shareUrl}
+	>
+		Send this to someone who won't believe you &rarr;
+	</button>
+	<p class="share-fallback" hidden>Link copied. Spread the word.</p>
+</div>
+
+<style>
+	.share {
+		margin-top: 1.5rem;
+	}
+
+	.share-btn {
+		display: inline-block;
+		background: var(--yellow);
+		color: var(--dark);
+		font-weight: 700;
+		padding: 0.75rem 1.25rem;
+		border-radius: 0.5rem;
+		border: none;
+		font-family: inherit;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+
+	.share-fallback {
+		margin-top: 0.5rem;
+		color: var(--brown);
+		font-size: 0.9rem;
+	}
+</style>
+
+<script>
+	const buttons =
+		document.querySelectorAll<HTMLButtonElement>(".share-btn");
+
+	for (const button of buttons) {
+		button.addEventListener("click", async () => {
+			const { title, text, url } = button.dataset;
+			const fallback = button.parentElement?.querySelector(
+				".share-fallback",
+			);
+
+			if (navigator.share) {
+				try {
+					await navigator.share({ title, text, url });
+				} catch {
+					// Share was cancelled or failed silently — nothing to do.
+				}
+				return;
+			}
+
+			if (navigator.clipboard && url) {
+				await navigator.clipboard.writeText(url);
+				fallback?.removeAttribute("hidden");
+				return;
+			}
+
+			window.prompt("Copy this link:", url ?? "");
+		});
+	}
+</script>

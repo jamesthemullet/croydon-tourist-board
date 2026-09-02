@@ -1,5 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import ShareButton from "../../components/ShareButton.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="The World's Largest Tombstone — Croydon Tourist Board" description="Officially the Nestlé Tower. Unofficially, the most tombstone-shaped office block in Britain.">
   <main class="container">
@@ -13,6 +14,10 @@ import Layout from '../../layouts/Layout.astro';
     <p>
       Whether this was deliberate remains a matter of local legend. We choose to believe it was.
     </p>
+    <ShareButton
+      title="The World's Largest Tombstone — Croydon Tourist Board"
+      text="Croydon has the world's largest tombstone. No, seriously."
+    />
   </main>
 </Layout>
 

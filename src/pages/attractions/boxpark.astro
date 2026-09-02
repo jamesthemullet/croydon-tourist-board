@@ -1,5 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import ShareButton from "../../components/ShareButton.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="BoxPark Croydon — Croydon Tourist Board" description="Shipping containers full of food, drink, and festival energy.">
   <main class="container">
@@ -13,6 +14,10 @@ import Layout from '../../layouts/Layout.astro';
     <a class="cta" href="/attractions/chicken-mile">
       See where BoxPark fits on the Chicken Mile &rarr;
     </a>
+    <ShareButton
+      title="BoxPark Croydon — Croydon Tourist Board"
+      text="Shipping containers, festival energy, and the start of the Chicken Mile."
+    />
   </main>
 </Layout>
 
