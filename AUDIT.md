@@ -11,7 +11,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 1. Test coverage — unit gaps and e2e
 
-- [x] Zero unit test files anywhere in `src/` — `yarn test` fails immediately with "No test files found, exiting with code 1". Vitest is configured (`vitest.config.ts`) but nothing exercises it. (found: 2026-09-02) (resolved: 2026-09-02, PR #TBD)
+- [x] Zero unit test files anywhere in `src/` — `yarn test` fails immediately with "No test files found, exiting with code 1". Vitest is configured (`vitest.config.ts`) but nothing exercises it. (found: 2026-09-02) (resolved: 2026-09-02, PR #3)
 - [ ] No e2e framework present (no Playwright/Cypress in `package.json`). Manually walked the golden path via browser: home page renders all 5 attraction cards, all 5 internal attraction routes (`/attractions/boxpark`, `/attractions/chicken-mile`, `/attractions/fairfield-halls`, `/attractions/the-mall`, `/attractions/tombstone`) resolve without console errors, the external Chicken Mile link redirects correctly to `https://croydonchickenmile.co.uk`, and `yarn build` generates `dist/sitemap-index.xml` + `dist/sitemap-0.xml` listing all 6 live routes — none of this has automated coverage. Given this is a 6-page static site with essentially no client-side JS, a full Playwright suite is disproportionate; a lightweight CI smoke test (`astro build` + assert expected files exist in `dist/`, or a Vitest test asserting the `attractions` array in `index.astro` matches the files under `src/pages/attractions/`) would be a proportionate nice-to-have rather than a blocker. (found: 2026-09-02)
 
 ## 2. Accessibility
