@@ -17,7 +17,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 2. Accessibility
 
-- [x] `.back` link color-contrast fails WCAG AA — `src/pages/attractions/boxpark.astro:26-30` (`color: var(--red)` `#E8210A` on `--cream` `#FFF8EE`, axe-core `color-contrast`, impact: serious, measured ≈4.28-4.6:1 against the 4.5:1 required for 16px bold text). `--red-dark` (`#B01808`) is already defined in `Layout.astro:54` and would likely pass. (found: 2026-09-02) (resolved: 2026-09-03, PR #TBD)
+- [x] `.back` link color-contrast fails WCAG AA — `src/pages/attractions/boxpark.astro:26-30` (`color: var(--red)` `#E8210A` on `--cream` `#FFF8EE`, axe-core `color-contrast`, impact: serious, measured ≈4.28-4.6:1 against the 4.5:1 required for 16px bold text). `--red-dark` (`#B01808`) is already defined in `Layout.astro:54` and would likely pass. (found: 2026-09-02) (resolved: 2026-09-03, PR #7)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/chicken-mile.astro:32-36`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/fairfield-halls.astro:26-30`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/the-mall.astro:27-31`. (found: 2026-09-02)
