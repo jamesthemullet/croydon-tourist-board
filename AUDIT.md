@@ -8,6 +8,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 - 2026-09-02 — initial audit: 16 findings (2 test coverage, 6 a11y, 1 perf, 2 SEO, 1 UX, 3 security, 1 content, 4 code quality — some categories overlap in cause, e.g. duplicated CSS underlies several)
 - 2026-09-02 — resolved: "Zero unit test files anywhere in `src/`" (test coverage #1) — added `test/attractions.test.ts`, a Vitest test verifying the homepage's `attractions` array data and cross-checking internal hrefs against files in `src/pages/attractions/`.
+- 2026-09-03 — resolved: "`.back` link color-contrast fails WCAG AA" on `boxpark.astro` (accessibility) — switched `.back` link color from `var(--red)` to the existing `var(--red-dark)` token.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -16,7 +17,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 2. Accessibility
 
-- [ ] `.back` link color-contrast fails WCAG AA — `src/pages/attractions/boxpark.astro:26-30` (`color: var(--red)` `#E8210A` on `--cream` `#FFF8EE`, axe-core `color-contrast`, impact: serious, measured ≈4.28-4.6:1 against the 4.5:1 required for 16px bold text). `--red-dark` (`#B01808`) is already defined in `Layout.astro:54` and would likely pass. (found: 2026-09-02)
+- [x] `.back` link color-contrast fails WCAG AA — `src/pages/attractions/boxpark.astro:26-30` (`color: var(--red)` `#E8210A` on `--cream` `#FFF8EE`, axe-core `color-contrast`, impact: serious, measured ≈4.28-4.6:1 against the 4.5:1 required for 16px bold text). `--red-dark` (`#B01808`) is already defined in `Layout.astro:54` and would likely pass. (found: 2026-09-02) (resolved: 2026-09-03, PR #7)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/chicken-mile.astro:32-36`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/fairfield-halls.astro:26-30`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/the-mall.astro:27-31`. (found: 2026-09-02)
