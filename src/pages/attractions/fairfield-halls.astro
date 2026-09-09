@@ -1,5 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import ShareButton from "../../components/ShareButton.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="Fairfield Halls — Croydon Tourist Board" description="A genuinely lovely concert and arts venue, tastefully restored.">
   <main class="container">
@@ -13,6 +14,10 @@ import Layout from '../../layouts/Layout.astro';
     <p>
       Yes, really. Not everything on this list is a cry for help.
     </p>
+    <ShareButton
+      title="Fairfield Halls — Croydon Tourist Board"
+      text="Proof that Croydon does culture rather well. Yes, really."
+    />
   </main>
 </Layout>
 

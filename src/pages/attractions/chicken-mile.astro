@@ -1,5 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import ShareButton from "../../components/ShareButton.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="The Chicken Mile — Croydon Tourist Board" description="The greatest concentration of fried chicken shops on planet Earth.">
   <main class="container">
@@ -19,6 +20,10 @@ import Layout from '../../layouts/Layout.astro';
     <a class="cta" href="https://croydon-chicken-mile.vercel.app" target="_blank" rel="noopener">
       Visit the Croydon Chicken Mile site &rarr;
     </a>
+    <ShareButton
+      title="The Chicken Mile — Croydon Tourist Board"
+      text="The greatest concentration of fried chicken shops on planet Earth. Come hungry."
+    />
   </main>
 </Layout>
 
