@@ -12,6 +12,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-03 — resolved: "`.back` link color-contrast fails WCAG AA" on `boxpark.astro` (accessibility) — switched `.back` link color from `var(--red)` to the existing `var(--red-dark)` token.
 - 2026-09-04 — resolved: "`.back` link color-contrast fails WCAG AA" on `chicken-mile.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-15 — resolved: "`.back` link color-contrast fails WCAG AA" on `fairfield-halls.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
+- 2026-09-18 — resolved: "All 5 attraction pages render with no `<nav>` or `<footer>` landmark" (accessibility) — moved the `<nav>`/`<footer>` site chrome from `index.astro` into the shared `Layout.astro`, so every page (including all attraction pages) now renders persistent nav/footer landmarks and the nav brand links home.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -25,7 +26,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - [x] Same `.back` link contrast issue — `src/pages/attractions/fairfield-halls.astro:26-30`. (found: 2026-09-02) (resolved: 2026-09-15, PR #9)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/the-mall.astro:27-31`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/tombstone.astro:26-30` (identical CSS pattern to the other four; one axe run reported no violation here but coincided with a browser session interruption during testing, so treat as unverified rather than a genuine pass). (found: 2026-09-02)
-- [ ] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02)
+- [x] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02) (resolved: 2026-09-18, PR #TBD)
 
 ## 3. Performance
 

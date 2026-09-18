@@ -38,7 +38,23 @@ const canonicalURL = new URL(
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <nav>
+      <div class="container nav-inner">
+        <a href="/" class="brand">Croydon Tourist Board</a>
+      </div>
+    </nav>
+
     <slot />
+
+    <footer>
+      <div class="container">
+        <p class="footer-title">Croydon Tourist Board</p>
+        <p>Proudly promoting Croydon since whenever we finished writing this website.</p>
+        <p class="small-muted">
+          Not an actual local authority body. Any resemblance to an official tourism organisation is entirely the point.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
 
@@ -92,5 +108,47 @@ const canonicalURL = new URL(
 
   footer a:hover {
     text-decoration: underline;
+  }
+</style>
+
+<style>
+  nav {
+    background: var(--dark);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand {
+    color: var(--cream);
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  footer p {
+    margin: 0.25rem 0;
+  }
+
+  .footer-title {
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    color: var(--yellow);
+  }
+
+  .small-muted {
+    opacity: 0.7;
+    font-size: 0.8rem;
   }
 </style>
