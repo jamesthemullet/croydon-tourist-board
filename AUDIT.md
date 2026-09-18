@@ -26,7 +26,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - [x] Same `.back` link contrast issue — `src/pages/attractions/fairfield-halls.astro:26-30`. (found: 2026-09-02) (resolved: 2026-09-15, PR #9)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/the-mall.astro:27-31`. (found: 2026-09-02)
 - [ ] Same `.back` link contrast issue — `src/pages/attractions/tombstone.astro:26-30` (identical CSS pattern to the other four; one axe run reported no violation here but coincided with a browser session interruption during testing, so treat as unverified rather than a genuine pass). (found: 2026-09-02)
-- [x] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02) (resolved: 2026-09-18, PR #TBD)
+- [x] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02) (resolved: 2026-09-18, PR #12)
 
 ## 3. Performance
 
