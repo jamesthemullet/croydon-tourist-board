@@ -34,7 +34,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 4. SEO / metadata
 
-- [x] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02) (resolved: 2026-09-19)
+- [x] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02) (resolved: 2026-09-19, PR #13)
 - [ ] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02)
 
 ## 5. Responsive / UX
