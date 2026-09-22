@@ -13,6 +13,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-04 — resolved: "`.back` link color-contrast fails WCAG AA" on `chicken-mile.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-15 — resolved: "`.back` link color-contrast fails WCAG AA" on `fairfield-halls.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
+- 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -34,7 +35,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 4. SEO / metadata
 
-- [ ] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02)
+- [x] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02) (resolved: 2026-09-19, PR #13)
 - [ ] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02)
 
 ## 5. Responsive / UX
