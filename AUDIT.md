@@ -14,6 +14,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-15 — resolved: "`.back` link color-contrast fails WCAG AA" on `fairfield-halls.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
+- 2026-09-25 — resolved: "Google Fonts loaded via synchronous stylesheet link" (performance) — self-hosted the latin-subset `Bangers`/`Nunito` woff2 files under `public/fonts/` and replaced the `<link rel="stylesheet">`/preconnect hints in `Layout.astro` with local `@font-face` rules.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -31,7 +32,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 3. Performance
 
-- [ ] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02)
+- [x] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02) (resolved: 2026-09-25)
 
 ## 4. SEO / metadata
 
