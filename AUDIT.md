@@ -32,7 +32,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 3. Performance
 
-- [x] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02) (resolved: 2026-09-25)
+- [x] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02) (resolved: 2026-09-25, PR #14)
 
 ## 4. SEO / metadata
 
