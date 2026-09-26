@@ -14,6 +14,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-15 — resolved: "`.back` link color-contrast fails WCAG AA" on `fairfield-halls.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
+- 2026-09-26 — resolved: "No custom 404 page exists" (Responsive / UX) — added `src/pages/404.astro` styled to match the site's red/yellow/cream identity, with a link back to the homepage.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -40,7 +41,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 5. Responsive / UX
 
-- [ ] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02)
+- [x] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02) (resolved: 2026-09-26, PR #TBD)
 
 ## 6. Security
 
