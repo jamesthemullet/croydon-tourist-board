@@ -41,7 +41,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 5. Responsive / UX
 
-- [x] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02) (resolved: 2026-09-26, PR #TBD)
+- [x] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02) (resolved: 2026-09-26, PR #15)
 
 ## 6. Security
 
