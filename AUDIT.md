@@ -46,7 +46,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 ## 6. Security
 
 - [ ] External Chicken Mile link uses `rel="noopener"` without `noreferrer` — `src/pages/index.astro:65`. (found: 2026-09-02)
-- [x] Same `rel="noopener"` without `noreferrer` — `src/pages/attractions/chicken-mile.astro:19`. (found: 2026-09-02) (resolved: 2026-09-29, PR #TBD)
+- [x] Same `rel="noopener"` without `noreferrer` — `src/pages/attractions/chicken-mile.astro:19`. (found: 2026-09-02) (resolved: 2026-09-29, PR #18)
 - [ ] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02)
 
 ## 7. Content & roadmap alignment
