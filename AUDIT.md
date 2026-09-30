@@ -16,6 +16,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
+- 2026-09-30 — resolved: "No `vercel.json` defining security headers" (security) — added `vercel.json` setting `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`, and `Content-Security-Policy` on all routes.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -48,7 +49,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 - [ ] External Chicken Mile link uses `rel="noopener"` without `noreferrer` — `src/pages/index.astro:65`. (found: 2026-09-02)
 - [x] Same `rel="noopener"` without `noreferrer` — `src/pages/attractions/chicken-mile.astro:19`. (found: 2026-09-02) (resolved: 2026-09-29, PR #18)
-- [ ] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02)
+- [x] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02) (resolved: 2026-09-30, PR TBD)
 
 ## 7. Content & roadmap alignment
 
