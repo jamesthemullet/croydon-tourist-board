@@ -53,7 +53,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 7. Content & roadmap alignment
 
-- [x] `src/pages/attractions/chicken-mile.astro` is orphaned — the homepage's Chicken Mile card (`src/pages/index.astro:6-11`) sets `external: true` and links directly to `https://croydon-chicken-mile.vercel.app`, bypassing the site's own `/attractions/chicken-mile` page entirely. That internal page is fully written (with its own CTA out to the external site) but has zero internal links pointing to it — reachable only by guessing the URL. Fix: either point the homepage card at `/attractions/chicken-mile` (which itself links out) for consistency with the other 4 attractions, or delete the orphaned file if the external site is meant to fully replace it. (found: 2026-09-02) (resolved: 2026-10-01, PR #TBD)
+- [x] `src/pages/attractions/chicken-mile.astro` is orphaned — the homepage's Chicken Mile card (`src/pages/index.astro:6-11`) sets `external: true` and links directly to `https://croydon-chicken-mile.vercel.app`, bypassing the site's own `/attractions/chicken-mile` page entirely. That internal page is fully written (with its own CTA out to the external site) but has zero internal links pointing to it — reachable only by guessing the URL. Fix: either point the homepage card at `/attractions/chicken-mile` (which itself links out) for consistency with the other 4 attractions, or delete the orphaned file if the external site is meant to fully replace it. (found: 2026-09-02) (resolved: 2026-10-01, PR #20)
 
 No other findings this run — every other attraction described in `README.md` has a live page linked from the home page, and no placeholder/lorem-ipsum/TODO/FIXME text was found anywhere in `src/`.
 
