@@ -16,6 +16,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
+- 2026-10-01 — resolved: "`chicken-mile.astro` is orphaned" (content & roadmap alignment) — pointed the homepage's Chicken Mile card at `/attractions/chicken-mile` instead of linking straight out to the external site, matching the pattern of the other 4 attraction cards.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -52,7 +53,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 ## 7. Content & roadmap alignment
 
-- [ ] `src/pages/attractions/chicken-mile.astro` is orphaned — the homepage's Chicken Mile card (`src/pages/index.astro:6-11`) sets `external: true` and links directly to `https://croydon-chicken-mile.vercel.app`, bypassing the site's own `/attractions/chicken-mile` page entirely. That internal page is fully written (with its own CTA out to the external site) but has zero internal links pointing to it — reachable only by guessing the URL. Fix: either point the homepage card at `/attractions/chicken-mile` (which itself links out) for consistency with the other 4 attractions, or delete the orphaned file if the external site is meant to fully replace it. (found: 2026-09-02)
+- [x] `src/pages/attractions/chicken-mile.astro` is orphaned — the homepage's Chicken Mile card (`src/pages/index.astro:6-11`) sets `external: true` and links directly to `https://croydon-chicken-mile.vercel.app`, bypassing the site's own `/attractions/chicken-mile` page entirely. That internal page is fully written (with its own CTA out to the external site) but has zero internal links pointing to it — reachable only by guessing the URL. Fix: either point the homepage card at `/attractions/chicken-mile` (which itself links out) for consistency with the other 4 attractions, or delete the orphaned file if the external site is meant to fully replace it. (found: 2026-09-02) (resolved: 2026-10-01, PR #20)
 
 No other findings this run — every other attraction described in `README.md` has a live page linked from the home page, and no placeholder/lorem-ipsum/TODO/FIXME text was found anywhere in `src/`.
 
