@@ -36,12 +36,6 @@ const attractions = [
 ];
 ---
 <Layout>
-  <nav>
-    <div class="container nav-inner">
-      <span class="brand">Croydon Tourist Board</span>
-    </div>
-  </nav>
-
   <main>
     <section class="hero">
       <div class="container">
@@ -73,36 +67,9 @@ const attractions = [
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="container">
-      <p class="footer-title">Croydon Tourist Board</p>
-      <p>Proudly promoting Croydon since whenever we finished writing this website.</p>
-      <p class="small-muted">
-        Not an actual local authority body. Any resemblance to an official tourism organisation is entirely the point.
-      </p>
-    </div>
-  </footer>
 </Layout>
 
 <style>
-  nav {
-    background: var(--dark);
-    padding: 0.75rem 1.5rem;
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-  }
-
-  .brand {
-    color: var(--cream);
-    font-family: 'Bangers', cursive;
-    font-size: 1.5rem;
-    letter-spacing: 0.04em;
-  }
-
   .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -178,21 +145,5 @@ const attractions = [
   .card p {
     font-size: 0.95rem;
     color: var(--brown);
-  }
-
-  footer p {
-    margin: 0.25rem 0;
-  }
-
-  .footer-title {
-    font-family: 'Bangers', cursive;
-    font-size: 1.3rem;
-    letter-spacing: 0.04em;
-    color: var(--yellow);
-  }
-
-  .small-muted {
-    opacity: 0.7;
-    font-size: 0.8rem;
   }
 </style>
