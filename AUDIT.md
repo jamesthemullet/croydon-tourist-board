@@ -60,7 +60,7 @@ No other findings this run — every other attraction described in `README.md` h
 
 ## 8. Code quality
 
-- [x] All 5 attraction pages (`src/pages/attractions/boxpark.astro`, `chicken-mile.astro`, `fairfield-halls.astro`, `the-mall.astro`, `tombstone.astro`) duplicate an identical ~25-line `<style>` block (`.container`, `.back`, `h1`, `.lede`, `p`) instead of sharing it via a global stylesheet or a shared sub-layout. (found: 2026-09-02) (resolved: 2026-10-02, PR #TBD)
+- [x] All 5 attraction pages (`src/pages/attractions/boxpark.astro`, `chicken-mile.astro`, `fairfield-halls.astro`, `the-mall.astro`, `tombstone.astro`) duplicate an identical ~25-line `<style>` block (`.container`, `.back`, `h1`, `.lede`, `p`) instead of sharing it via a global stylesheet or a shared sub-layout. (found: 2026-09-02) (resolved: 2026-10-02, PR #21)
 - [ ] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02)
 - [ ] External Chicken Mile URL (`https://croydon-chicken-mile.vercel.app`) is hardcoded as a magic string in two places — `src/pages/index.astro:8` and `src/pages/attractions/chicken-mile.astro:19` — rather than a single shared constant. (found: 2026-09-02)
 - [ ] The `attractions` array in `src/pages/index.astro:4-36` has no explicit TypeScript interface — relies on inferred literal types rather than e.g. `interface Attraction { name: string; blurb: string; href: string; external?: boolean; tag: string }`, which would self-document the shape and catch typos in future entries. (found: 2026-09-02)
