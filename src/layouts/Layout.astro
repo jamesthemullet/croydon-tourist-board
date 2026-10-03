@@ -11,6 +11,10 @@ const canonicalURL = new URL(
 	Astro.url.pathname,
 	"https://croydontouristboard.co.uk",
 );
+const ogImageURL = new URL(
+	"/og-image.png",
+	"https://croydontouristboard.co.uk",
+);
 ---
 <!doctype html>
 <html lang="en">
@@ -25,11 +29,15 @@ const canonicalURL = new URL(
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_GB" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

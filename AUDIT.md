@@ -16,6 +16,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-17 — resolved: "`.back` link color-contrast fails WCAG AA" on `tombstone.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
+- 2026-09-27 — resolved: "No `og:image`/`twitter:image` tags" (SEO / metadata) — added `public/og-image.png` (1200x630, branded) and wired up `og:image`/`og:image:width`/`og:image:height`/`twitter:image` in `Layout.astro`.
 - 2026-09-26 — resolved: "No custom 404 page exists" (Responsive / UX) — added `src/pages/404.astro` styled to match the site's red/yellow/cream identity, with a link back to the homepage.
 - 2026-09-25 — resolved: "Google Fonts loaded via synchronous stylesheet link" (performance) — self-hosted the latin-subset `Bangers`/`Nunito` woff2 files under `public/fonts/` and replaced the `<link rel="stylesheet">`/preconnect hints in `Layout.astro` with local `@font-face` rules.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
@@ -41,7 +42,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 ## 4. SEO / metadata
 
 - [x] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02) (resolved: 2026-09-19, PR #13)
-- [ ] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02)
+- [x] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02) (resolved: 2026-09-27, PR #16)
 
 ## 5. Responsive / UX
 
