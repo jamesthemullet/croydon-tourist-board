@@ -1,5 +1,6 @@
 ---
 import ShareButton from "../../components/ShareButton.astro";
+import { CHICKEN_MILE_EXTERNAL_URL } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="The Chicken Mile — Croydon Tourist Board" description="The greatest concentration of fried chicken shops on planet Earth.">
@@ -17,7 +18,7 @@ import Layout from "../../layouts/Layout.astro";
       including a definitive map and a wheel of fortune for the indecisive, can be found on
       the official Chicken Mile site.
     </p>
-    <a class="cta" href="https://croydon-chicken-mile.vercel.app" target="_blank" rel="noopener noreferrer">
+    <a class="cta" href={CHICKEN_MILE_EXTERNAL_URL} target="_blank" rel="noopener noreferrer">
       Visit the Croydon Chicken Mile site &rarr;
     </a>
     <ShareButton

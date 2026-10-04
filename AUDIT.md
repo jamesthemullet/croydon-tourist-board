@@ -20,6 +20,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-26 — resolved: "No custom 404 page exists" (Responsive / UX) — added `src/pages/404.astro` styled to match the site's red/yellow/cream identity, with a link back to the homepage.
 - 2026-09-25 — resolved: "Google Fonts loaded via synchronous stylesheet link" (performance) — self-hosted the latin-subset `Bangers`/`Nunito` woff2 files under `public/fonts/` and replaced the `<link rel="stylesheet">`/preconnect hints in `Layout.astro` with local `@font-face` rules.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
+- 2026-10-04 — resolved: "External Chicken Mile URL hardcoded as a magic string in two places" (code quality) — added `src/consts.ts` exporting `CHICKEN_MILE_EXTERNAL_URL` and imported it in both `index.astro` and `chicken-mile.astro`.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -64,5 +65,5 @@ No other findings this run — every other attraction described in `README.md` h
 
 - [ ] All 5 attraction pages (`src/pages/attractions/boxpark.astro`, `chicken-mile.astro`, `fairfield-halls.astro`, `the-mall.astro`, `tombstone.astro`) duplicate an identical ~25-line `<style>` block (`.container`, `.back`, `h1`, `.lede`, `p`) instead of sharing it via a global stylesheet or a shared sub-layout. (found: 2026-09-02)
 - [ ] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02)
-- [ ] External Chicken Mile URL (`https://croydon-chicken-mile.vercel.app`) is hardcoded as a magic string in two places — `src/pages/index.astro:8` and `src/pages/attractions/chicken-mile.astro:19` — rather than a single shared constant. (found: 2026-09-02)
+- [x] External Chicken Mile URL (`https://croydon-chicken-mile.vercel.app`) is hardcoded as a magic string in two places — `src/pages/index.astro:8` and `src/pages/attractions/chicken-mile.astro:19` — rather than a single shared constant. (found: 2026-09-02) (resolved: 2026-10-04, PR #TBD)
 - [ ] The `attractions` array in `src/pages/index.astro:4-36` has no explicit TypeScript interface — relies on inferred literal types rather than e.g. `interface Attraction { name: string; blurb: string; href: string; external?: boolean; tag: string }`, which would self-document the shape and catch typos in future entries. (found: 2026-09-02)
