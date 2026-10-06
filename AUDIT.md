@@ -21,6 +21,8 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-25 — resolved: "Google Fonts loaded via synchronous stylesheet link" (performance) — self-hosted the latin-subset `Bangers`/`Nunito` woff2 files under `public/fonts/` and replaced the `<link rel="stylesheet">`/preconnect hints in `Layout.astro` with local `@font-face` rules.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
 - 2026-10-03 — resolved: "`attractions` array has no explicit TypeScript interface" (code quality) — added an `Attraction` interface in `src/pages/index.astro` and typed the array with it.
+- 2026-09-30 — resolved: "No `vercel.json` defining security headers" (security) — added `vercel.json` setting `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`, and `Content-Security-Policy` on all routes.
+- 2026-10-05 — resolved: "`<nav>`/`<footer>` defined only inline in `index.astro`" (code quality #2) — verified this was already fixed as a side effect of PR #12 (which centralized `<nav>`/`<footer>` into `Layout.astro` for the accessibility landmark finding); checked off the stale checklist item, no code change needed.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -53,7 +55,7 @@ audit adds new findings to the bottom of each section and leaves checked items a
 
 - [ ] External Chicken Mile link uses `rel="noopener"` without `noreferrer` — `src/pages/index.astro:65`. (found: 2026-09-02)
 - [x] Same `rel="noopener"` without `noreferrer` — `src/pages/attractions/chicken-mile.astro:19`. (found: 2026-09-02) (resolved: 2026-09-29, PR #18)
-- [ ] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02)
+- [x] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02) (resolved: 2026-09-30, PR #19)
 
 ## 7. Content & roadmap alignment
 
@@ -64,6 +66,6 @@ No other findings this run — every other attraction described in `README.md` h
 ## 8. Code quality
 
 - [ ] All 5 attraction pages (`src/pages/attractions/boxpark.astro`, `chicken-mile.astro`, `fairfield-halls.astro`, `the-mall.astro`, `tombstone.astro`) duplicate an identical ~25-line `<style>` block (`.container`, `.back`, `h1`, `.lede`, `p`) instead of sharing it via a global stylesheet or a shared sub-layout. (found: 2026-09-02)
-- [ ] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02)
+- [x] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02) (resolved: 2026-10-05, PR #24 — already fixed as a side effect of PR #12, which moved `<nav>`/`<footer>` into `Layout.astro` to resolve the accessibility landmark finding; `index.astro` no longer defines them inline and all 5 attraction pages already import and render `Layout.astro`, so no further code change was needed, just updating this stale checkbox)
 - [ ] External Chicken Mile URL (`https://croydon-chicken-mile.vercel.app`) is hardcoded as a magic string in two places — `src/pages/index.astro:8` and `src/pages/attractions/chicken-mile.astro:19` — rather than a single shared constant. (found: 2026-09-02)
 - [x] The `attractions` array in `src/pages/index.astro:4-36` has no explicit TypeScript interface — relies on inferred literal types rather than e.g. `interface Attraction { name: string; blurb: string; href: string; external?: boolean; tag: string }`, which would self-document the shape and catch typos in future entries. (found: 2026-09-02) (resolved: 2026-10-03, PR #22)
