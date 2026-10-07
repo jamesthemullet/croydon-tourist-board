@@ -1,4 +1,5 @@
 ---
+import { CHICKEN_MILE_EXTERNAL_URL } from '../consts';
 import Layout from '../layouts/Layout.astro';
 
 interface Attraction {
@@ -13,7 +14,7 @@ const attractions: Attraction[] = [
 	{
 		name: 'The Chicken Mile',
 		blurb: "The greatest concentration of fried chicken shops on planet Earth, condensed into a single stretch of High Street. A pilgrimage route for the discerning glutton.",
-		href: 'https://croydon-chicken-mile.vercel.app',
+		href: CHICKEN_MILE_EXTERNAL_URL,
 		external: true,
 		tag: 'Culinary',
 	},
