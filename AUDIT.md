@@ -12,11 +12,18 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - 2026-09-03 — resolved: "`.back` link color-contrast fails WCAG AA" on `boxpark.astro` (accessibility) — switched `.back` link color from `var(--red)` to the existing `var(--red-dark)` token.
 - 2026-09-04 — resolved: "`.back` link color-contrast fails WCAG AA" on `chicken-mile.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-15 — resolved: "`.back` link color-contrast fails WCAG AA" on `fairfield-halls.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
+- 2026-09-18 — resolved: "All 5 attraction pages render with no `<nav>` or `<footer>` landmark" (accessibility) — moved the `<nav>`/`<footer>` site chrome from `index.astro` into the shared `Layout.astro`, so every page (including all attraction pages) now renders persistent nav/footer landmarks and the nav brand links home.
 - 2026-09-17 — resolved: "`.back` link color-contrast fails WCAG AA" on `tombstone.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-16 — resolved: "`.back` link color-contrast fails WCAG AA" on `the-mall.astro` (accessibility) — same fix, switched `.back` link color from `var(--red)` to `var(--red-dark)`.
 - 2026-09-19 — resolved: "`public/robots.txt` does not exist" (SEO / metadata) — added `public/robots.txt` allowing all crawlers and pointing at the existing `sitemap-index.xml`.
+- 2026-09-27 — resolved: "No `og:image`/`twitter:image` tags" (SEO / metadata) — added `public/og-image.png` (1200x630, branded) and wired up `og:image`/`og:image:width`/`og:image:height`/`twitter:image` in `Layout.astro`.
+- 2026-09-26 — resolved: "No custom 404 page exists" (Responsive / UX) — added `src/pages/404.astro` styled to match the site's red/yellow/cream identity, with a link back to the homepage.
+- 2026-09-25 — resolved: "Google Fonts loaded via synchronous stylesheet link" (performance) — self-hosted the latin-subset `Bangers`/`Nunito` woff2 files under `public/fonts/` and replaced the `<link rel="stylesheet">`/preconnect hints in `Layout.astro` with local `@font-face` rules.
 - 2026-09-29 — resolved: "External Chicken Mile link uses `rel=\"noopener\"` without `noreferrer`" on `chicken-mile.astro` (security) — switched the CTA link's `rel` to `noopener noreferrer`.
 - 2026-10-01 — resolved: "`chicken-mile.astro` is orphaned" (content & roadmap alignment) — pointed the homepage's Chicken Mile card at `/attractions/chicken-mile` instead of linking straight out to the external site, matching the pattern of the other 4 attraction cards.
+- 2026-10-03 — resolved: "`attractions` array has no explicit TypeScript interface" (code quality) — added an `Attraction` interface in `src/pages/index.astro` and typed the array with it.
+- 2026-09-30 — resolved: "No `vercel.json` defining security headers" (security) — added `vercel.json` setting `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`, and `Content-Security-Policy` on all routes.
+- 2026-10-05 — resolved: "`<nav>`/`<footer>` defined only inline in `index.astro`" (code quality #2) — verified this was already fixed as a side effect of PR #12 (which centralized `<nav>`/`<footer>` into `Layout.astro` for the accessibility landmark finding); checked off the stale checklist item, no code change needed.
 
 ## 1. Test coverage — unit gaps and e2e
 
@@ -28,28 +35,28 @@ audit adds new findings to the bottom of each section and leaves checked items a
 - [x] `.back` link color-contrast fails WCAG AA — `src/pages/attractions/boxpark.astro:26-30` (`color: var(--red)` `#E8210A` on `--cream` `#FFF8EE`, axe-core `color-contrast`, impact: serious, measured ≈4.28-4.6:1 against the 4.5:1 required for 16px bold text). `--red-dark` (`#B01808`) is already defined in `Layout.astro:54` and would likely pass. (found: 2026-09-02) (resolved: 2026-09-03, PR #7)
 - [x] Same `.back` link contrast issue — `src/pages/attractions/chicken-mile.astro:32-36`. (found: 2026-09-02) (resolved: 2026-09-04, PR #8)
 - [x] Same `.back` link contrast issue — `src/pages/attractions/fairfield-halls.astro:26-30`. (found: 2026-09-02) (resolved: 2026-09-15, PR #9)
+- [x] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02) (resolved: 2026-09-18, PR #12)
 - [x] Same `.back` link contrast issue — `src/pages/attractions/tombstone.astro:26-30` (identical CSS pattern to the other four; one axe run reported no violation here but coincided with a browser session interruption during testing, so treat as unverified rather than a genuine pass). (found: 2026-09-02) (resolved: 2026-09-17, PR #11)
 - [x] Same `.back` link contrast issue — `src/pages/attractions/the-mall.astro:27-31`. (found: 2026-09-02) (resolved: 2026-09-16, PR #10)
-- [ ] All 5 attraction pages render with no `<nav>` or `<footer>` landmark — `<nav>`/`<footer>` are defined inline only in `src/pages/index.astro:39-43,77-85` rather than in the shared `Layout.astro`, so subpages have no persistent site chrome, no footer landmark/legal text, and the only way back to the homepage is a single "Back" text link. (found: 2026-09-02)
 
 ## 3. Performance
 
-- [ ] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02)
+- [x] Google Fonts (`Bangers`, `Nunito`) loaded via a synchronous `<link rel="stylesheet">` in `src/layouts/Layout.astro:37`, blocking render until the external stylesheet loads. Preconnect hints and `display=swap` are already in place, which mitigates most of the impact. Self-hosting the two font files would remove the external round-trip entirely — worth doing as a nice-to-have given there are only two families, not urgent for a site this size. (found: 2026-09-02) (resolved: 2026-09-25, PR #14)
 
 ## 4. SEO / metadata
 
 - [x] `public/robots.txt` does not exist — confirmed 404 in dev (`/robots.txt`) and absent from `yarn build` output (`dist/`). (found: 2026-09-02) (resolved: 2026-09-19, PR #13)
-- [ ] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02)
+- [x] No `og:image`/`twitter:image` tags in `src/layouts/Layout.astro:24-32` — `twitter:card` is set to `summary_large_image` (line 30), which expects an image; without one, links shared on social platforms render as text-only cards rather than the large-image format the card type implies. (found: 2026-09-02) (resolved: 2026-09-27, PR #16)
 
 ## 5. Responsive / UX
 
-- [ ] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02)
+- [x] No custom 404 page exists (no `src/pages/404.astro`; `find dist -iname "404*"` returns nothing after `yarn build`) — visiting an unknown route falls back to Astro's default unstyled dev 404 page, and in production would fall back to Vercel's generic 404 rather than a page styled to match the site's red/yellow/cream identity. (found: 2026-09-02) (resolved: 2026-09-26, PR #15)
 
 ## 6. Security
 
 - [ ] External Chicken Mile link uses `rel="noopener"` without `noreferrer` — `src/pages/index.astro:65`. (found: 2026-09-02)
 - [x] Same `rel="noopener"` without `noreferrer` — `src/pages/attractions/chicken-mile.astro:19`. (found: 2026-09-02) (resolved: 2026-09-29, PR #18)
-- [ ] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02)
+- [x] No `vercel.json` defining security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy) — the site relies entirely on Vercel's platform defaults. No inline secrets/API keys found in `astro.config.mjs` or page source, `.env`/`.env.production` are correctly gitignored, and `yarn audit` reports 0 vulnerabilities across 502 packages — no findings on those fronts. (found: 2026-09-02) (resolved: 2026-09-30, PR #19)
 
 ## 7. Content & roadmap alignment
 
@@ -60,6 +67,6 @@ No other findings this run — every other attraction described in `README.md` h
 ## 8. Code quality
 
 - [ ] All 5 attraction pages (`src/pages/attractions/boxpark.astro`, `chicken-mile.astro`, `fairfield-halls.astro`, `the-mall.astro`, `tombstone.astro`) duplicate an identical ~25-line `<style>` block (`.container`, `.back`, `h1`, `.lede`, `p`) instead of sharing it via a global stylesheet or a shared sub-layout. (found: 2026-09-02)
-- [ ] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02)
+- [x] `<nav>`/`<footer>` are defined only inline in `src/pages/index.astro:39-43,77-85` rather than centralized in `src/layouts/Layout.astro`, so they can't be reused by the attraction pages (see also finding under Accessibility, category 2). (found: 2026-09-02) (resolved: 2026-10-05, PR #24 — already fixed as a side effect of PR #12, which moved `<nav>`/`<footer>` into `Layout.astro` to resolve the accessibility landmark finding; `index.astro` no longer defines them inline and all 5 attraction pages already import and render `Layout.astro`, so no further code change was needed, just updating this stale checkbox)
 - [ ] External Chicken Mile URL (`https://croydon-chicken-mile.vercel.app`) is hardcoded as a magic string in two places — `src/pages/index.astro:8` and `src/pages/attractions/chicken-mile.astro:19` — rather than a single shared constant. (found: 2026-09-02)
-- [ ] The `attractions` array in `src/pages/index.astro:4-36` has no explicit TypeScript interface — relies on inferred literal types rather than e.g. `interface Attraction { name: string; blurb: string; href: string; external?: boolean; tag: string }`, which would self-document the shape and catch typos in future entries. (found: 2026-09-02)
+- [x] The `attractions` array in `src/pages/index.astro:4-36` has no explicit TypeScript interface — relies on inferred literal types rather than e.g. `interface Attraction { name: string; blurb: string; href: string; external?: boolean; tag: string }`, which would self-document the shape and catch typos in future entries. (found: 2026-09-02) (resolved: 2026-10-03, PR #22)

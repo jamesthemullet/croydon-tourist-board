@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="Page Not Found — Croydon Tourist Board" description="This page has gone the way of the old Whitgift Centre shops. Head back to the official attractions.">
+  <main class="container">
+    <span class="tag">404</span>
+    <h1>Lost, Like a Tram Route.</h1>
+    <p class="lede">
+      This page doesn't exist. It's possibly been demolished, redeveloped, or was never
+      really here to begin with — much like several of Croydon's finest landmarks.
+    </p>
+    <a class="home-link" href="/">&larr; Back to attractions</a>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--brown);
+    margin-bottom: 2rem;
+  }
+
+  .home-link {
+    color: var(--red-dark);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .home-link:hover {
+    text-decoration: underline;
+  }
+</style>
