@@ -8,6 +8,19 @@ interface Props {
 }
 
 const { title, description, heading } = Astro.props;
+
+const canonicalURL = new URL(
+	Astro.url.pathname,
+	"https://croydontouristboard.co.uk",
+);
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "TouristAttraction",
+	name: heading,
+	description,
+	url: canonicalURL.toString(),
+};
 ---
 <Layout title={title} description={description}>
   <main class="container">
@@ -15,6 +28,7 @@ const { title, description, heading } = Astro.props;
     <h1>{heading}</h1>
     <slot />
   </main>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </Layout>
 
 <style>
