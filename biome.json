@@ -15,7 +15,7 @@
 			"!**/.cache",
 			"!**/dist",
 			"!**/node_modules",
-			"!**/.vercel"
+			"!**/.wrangler"
 		]
 	},
 	"formatter": {
