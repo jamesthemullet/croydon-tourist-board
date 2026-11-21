@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { beforeAll, describe, expect, it } from "vitest";
@@ -34,6 +34,23 @@ describe("production build output", () => {
 				existsSync(pageFile),
 				`expected ${pageFile} to exist for attraction "${slug}"`,
 			).toBe(true);
+		}
+	});
+
+	it("includes valid TouristAttraction JSON-LD on every attraction route", () => {
+		for (const slug of attractionSlugs) {
+			const pageFile = path.join(distDir, "attractions", slug, "index.html");
+			const html = readFileSync(pageFile, "utf-8");
+			const match = html.match(
+				/<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+			);
+			expect(match, `expected JSON-LD script on ${pageFile}`).toBeTruthy();
+
+			const data = JSON.parse(match?.[1] ?? "");
+			expect(data["@context"]).toBe("https://schema.org");
+			expect(data["@type"]).toBe("TouristAttraction");
+			expect(data.name).toBeTruthy();
+			expect(data.url).toContain(`/attractions/${slug}`);
 		}
 	});
 });
